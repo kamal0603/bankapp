@@ -14,8 +14,10 @@
           $scope.showrecord1 = false;
           $scope.viewby = '10';                            
           $scope.location = "DELHI";  
+          $scope.showDetail = false;
           
         $scope.getBank = function (location) {
+          $scope.showDetail = false;
           $scope.showrecord = false;
           $scope.showrecord1 = true;
           $scope.data = '';
@@ -50,6 +52,7 @@
           });
         }
         $scope.getBankById = function(ifsc){
+          $scope.showDetail = true;
          $scope.filteredBank =  $scope.data.filter(function(bank){
             return bank.ifsc == ifsc;
           })
