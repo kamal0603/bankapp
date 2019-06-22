@@ -1,5 +1,5 @@
  (function () {
-  var app = angular.module('myApp', ['ui.bootstrap', 'ngStorage', 'ngRoute'])
+  var app = angular.module('myApp', ['ui.bootstrap', 'ngStorage', 'ngRoute', 'angular.filter'])
     app.config(function($routeProvider){
       $routeProvider
       .when('/banks',{

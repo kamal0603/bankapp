@@ -1,7 +1,9 @@
  <!DOCTYPE html>
 <html lang="en-US">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter.min.js"></script>
+
 <script src="index.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -41,7 +43,7 @@
                      
                 </div>
                 <div class="col-md-4">
-                    <input ng-model="searchbank.$" placeholder="Search Anything" class="col-md-8"style="height: 29px;" type="text" />
+                    <input type="text" ng-model="searchbank" placeholder="Search Anything" class="col-md-8"style="height: 29px;" type="text" />
 
                 </div>
                 <div class="col-md-4">
@@ -82,7 +84,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        ng-repeat-start="bank in data.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))  | filter:searchbank:strict" ng-show="bank.ifsc">
+                        ng-repeat="bank in data.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))  | filterBy: ['bank_name', 'ifsc', 'branch'] :searchbank as filtered">
                         <td>
                             <a ng-click="getBankById(bank.ifsc)" class="accordion"  href='#!banks'>{{bank.bank_name}}</a>
 
@@ -102,42 +104,7 @@
                       
                     </tr>
 
-                    <tr ng-repeat-end ng-if="bank.isExpand"  class="panel">
-                            <td colspan="6">
-                                <table border="0" cellspacing="0" cellpadding="0">
-                                    <tr>
-                                        <th>
-                                            Bank Name
-                                        </th>
-                                        <th>
-                                            IFSC
-                                        </th>
-                                        <th>
-                                            Branch
-                                        </th>
-                                        <th>
-                                            Address
-                                        </th>
-                                        <th>
-                                            STATE
-                                        </th>
-                                        <th>
-                                            CITY
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <!-- <td>{{oi.Design.title}}</td> -->
-                                        <td>{{ bank.bank_name}}</td>
-                                        <td>{{ bank.ifsc}}</td>
-                                        <td>{{ bank.branch}}</td>
-                                        <td>{{ bank.address}}</td>
-                                        <td>{{ bank.state}}</td>
-                                        <td>{{ bank.city}}</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    
+                   
 
                 </tbody>
 
