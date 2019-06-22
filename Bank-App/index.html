@@ -5,6 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter.min.js"></script>
 
 <script src="index.js"></script>
+<script src="dirPagination.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -84,7 +85,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        ng-repeat="bank in data.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))  | filterBy: ['bank_name', 'ifsc', 'branch'] :searchbank as filtered">
+                    ng-repeat="bank in (data| filterBy: ['bank_name', 'ifsc', 'branch'] :searchbank).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) as filtered">
                         <td>
                             <a ng-click="getBankById(bank.ifsc)" class="accordion"  href='#!banks'>{{bank.bank_name}}</a>
 
