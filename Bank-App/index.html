@@ -109,7 +109,7 @@
                 </tbody>
 
             </table>
-            <pagination ng-show="showrecord" total-items="totalItems" ng-model="currentPage" max-size="maxSize"
+            <pagination ng-show="showrecord" total-items="(data| filterBy: ['bank_name', 'ifsc', 'branch'] :searchbank).length" ng-model="currentPage" max-size="maxSize"
                 class="pagination-sm position-relative" boundary-links="true" items-per-page="itemsPerPage">
             </pagination>
         </div>
